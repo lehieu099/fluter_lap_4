@@ -147,4 +147,4 @@ class SecondRoute extends StatelessWidget {
 
 [Click here to see the results](https://github.com/lehieu099/fluter_lap_4/tree/master/screenshoott)
 
-![alt](assets/image/muoiDiem.jpg)
+<img src="assets/image/muoiDiem.jpg" width="200" height="180">
