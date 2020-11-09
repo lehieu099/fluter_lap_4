@@ -3,14 +3,148 @@
 A new Flutter project.
 
 ## Getting Started
+## flutter_app
 
-This project is a starting point for a Flutter application.
+Thực hành định tuyến
 
-A few resources to get you started if this is your first Flutter project:
+## Getting Started
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+***This project is a starting point for a Flutter application.***
+> Main.dart
+```dart
+import 'package:flutter/material.dart';
+import 'animate.dart';
+import 'navigator-name.dart';
+import 'arguments.dart';
+import 'return-data.dart';
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'My App',
+      theme: ThemeData(
+        primarySwatch: Colors.deepOrange,
+      ),
+      home: Action(title: 'My\' App2'),
+    );
+  }
+}
+
+
+class Action extends StatefulWidget{
+  Action ({Key key,this.title}) :super(key: key);
+
+  final String title;
+
+  @override
+  MyLayout createState() => MyLayout();
+
+}
+
+class MyLayout extends State<Action>{
+  int _counter = 0;
+
+  void _incrementCounter() {
+    setState(() {
+      _counter++;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Row(
+          children: [Icon(Icons.home), Text(widget.title)],
+        ),
+      ),
+      body: Center(
+          child: GestureDetector(
+            onTap: () => {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => SecondRoute()))
+            },
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                IconButton(
+                    icon: Icon(Icons.ac_unit),
+                    onPressed: () {
+                      setState(() {
+                        _counter++;
+                      });
+                    }),
+                Text('$_counter'),
+                FlatButton(
+                  onPressed: () => {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => SecondRoute()))
+                  },
+                  color: Colors.green,
+                  child: Text("Navigator"),
+                ),
+                FlatButton(
+                  onPressed: () => {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => MainScreen()))
+                  },
+                  color: Colors.green,
+                  child: Text("Animate"),
+                ),
+                FlatButton(
+                  onPressed: () => {Navigator.pushNamed(context, '/second')},
+                  color: Colors.green,
+                  child: Text("Navigator name"),
+                ),
+                FlatButton(
+                  onPressed: () => {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => MyAppArgument()))
+                  },
+                  color: Colors.green,
+                  child: Text("Argument"),
+                ),
+                FlatButton(
+                  onPressed: () => {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => ReturnDataScreen()))
+                  },
+                  color: Colors.green,
+                  child: Text("Return Data"),
+                ),
+              ],
+            ),
+          )),
+    );
+  }
+}
+
+
+class SecondRoute extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Second Route"),
+      ),
+      body: Center(
+          child: FlatButton(
+            color: Colors.amberAccent,
+            child: Text("Back Home"),
+            onPressed: () => {Navigator.pop(context)},
+          )),
+    );
+  }
+}
+```
+#Kết quả
+
+[Click here to see the results](https://github.com/lehieu099/fluter_lap_4/tree/master/screenshoott)
+
+![alt](assets/image/muoiDiem.jpg)
